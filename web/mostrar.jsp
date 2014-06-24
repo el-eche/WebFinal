@@ -114,7 +114,7 @@
                <br> Link de descarga :<input type="text" name="descarga">
                <br> Orden alta :<input type="text" name="alta">
                 <input type="text" name="nombre" hidden="" value="<%=nombre%>">
-                <br> <input type="submit" value="Alta Version">
+                <br> <input type="submit" value="Alta Version" class="texto">
                 </form>
                 </div>
                 

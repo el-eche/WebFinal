@@ -1,6 +1,6 @@
 <%-- 
-    Document   : comprarJuegos
-    Created on : 02/06/2014, 12:56:52 PM
+    Document   : juegosReclamar
+    Created on : 23/06/2014, 07:44:01 PM
     Author     : pico
 --%>
 
@@ -63,7 +63,6 @@ $('#tablamia').dataTable({
      String nom=rs.getString("nombre");
      String ur=rs.getString("imagen");
      String des=rs.getString("desarrollador");
-     double pre=rs.getDouble("precio");
   %>
   
                 
@@ -72,10 +71,9 @@ $('#tablamia').dataTable({
     height: 170px; 
     float: right;
    background: #999999;">  
- <a href="confirmarCompra.jsp?juego=<%=nom%>"><br/><font color="red"><%=nom%><br/>
+ <a href="ingresarReclamo.jsp?juego=<%=nom%>"><br/><font color="red"><%=nom%><br/>
  <img class="min" src="http://localhost/Imagenes/<%=ur%>" 
  onmouseover="this.style.opacity=0.5" onmouseout="this.style.opacity=1"  alt="#"/>
- <br/><font color="red">u$u<%=pre%><br/>
    				
 </a>
        </div></td> 

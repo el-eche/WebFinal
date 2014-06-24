@@ -12,8 +12,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TPlayStore|Iniciar Sesion</title>
-        <link type="text/css" href="EstiloPruebas.css" rel="stylesheet">
         <script language="JavaScript" type="text/javascript" src="jquery.js" charset="utf-8"></script>
+        <link type="text/css" href="EstiloPruebas.css" rel="stylesheet"> 
+        
         <script type="text/javascript" language="javascript">
         $(window).load(function(){
 
@@ -224,8 +225,10 @@ function cambiarDisplay() {
         <div id="mio"></div>
         </div> 
     
-  <div id="pie"><font id="mifuente">@2014 TPlay Store
-            <font id="segundafuente"><a href="indexDes.jsp" style="color: #FFFFFF;">Home</a>
+    
+    
+    <div id="pie" style="top: 600px;left: 100px;"><font id="mifuente">@2014 TPlay Store
+            <font id="segundafuente"><a href="indexDes.jsp">Home</a>
         </div>    
     </body>
 </html>

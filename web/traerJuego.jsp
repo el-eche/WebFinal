@@ -134,11 +134,15 @@
 
 <%}%> 
         </div>
-             
+      
+        
+        
+   
+        
+        
         
         <div id="medio">  
-        
-        
+
         <%
         String nom=request.getParameter("criterio");
         int cont=0;
@@ -197,7 +201,10 @@
     </div> 
   
     
-    <div id="pie"><font id="mifuente">@2014 TPlay Store
+    
+    
+    
+    <div id="pie" style="top: 600px;left: 100px;"><font id="mifuente">@2014 TPlay Store
             <font id="segundafuente"><a href="indexDes.jsp" style="color: #FFFFFF;">Home</a>
         </div> 
     </body>

@@ -4809,7 +4809,7 @@
 	 *  @param {string} msg error message
 	 *  @param {int} tn Technical note id to get more information about the error.
 	 *  @memberof DataTable#oApi
-	 */
+	 */ 
 	function _fnLog( settings, level, msg, tn )
 	{
 		msg = 'DataTables warning: '+

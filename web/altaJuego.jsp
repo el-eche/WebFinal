@@ -142,8 +142,11 @@
                 <input type="submit" value="Alta Juego" class="texto"> 
             </form> </div> 
              </div> 
+               
                 
-                    <div id="pie"><font id="mifuente">@2014 TPlay Store
+                
+                
+                <div id="pie" style="left: 100px;"><font id="mifuente">@2014 TPlay Store
             <font id="segundafuente"><a href="indexDes.jsp" style="color: #FFFFFF;">Home</a>
         </div> 
     </body>

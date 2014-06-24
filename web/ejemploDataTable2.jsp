@@ -19,17 +19,16 @@
 <script type="text/javascript" src="dataTables.js" charset="utf-8"></script> 
 <script type="text/javascript" charset="utf-8"> 
 $(document).ready(function() {
-$('#example').dataTable( {
+$('#tablamia').dataTable( {//Linea 4812 arreglar
     "bProcessing": true,
     "oLanguage": {  
                 "sUrl": "dataTables.spanish.txt"  
             }, 
             "sLengthMenu":false,
     "iDisplayLength": 8,
-"aaSorting": [[ 4, "desc" ]],
+"aaSorting": [[ 2, "desc" ]],
 "aoColumns": [
-null,
-null,
+
 null,
 null,
 null
@@ -41,7 +40,7 @@ null
     </head>
     <body>
         <div id="resto">
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="tablamia">
 <thead> 
 <tr> 
 <th>Juegos</th> <th>Desarrollador</th> 
@@ -57,7 +56,7 @@ null
     String ima=bu.JuegoCategoria(ca).get(i).getImagen();
     
     
-    %>
+    %>    
 <tr class="center"> 
    
 <td><div id="cuadro" class="cuadro" style=" width: 140px;
@@ -70,7 +69,7 @@ null
     <%--  <img class="min" src="http://localhost/Imagenes/<%=ur%>"width="100" 
      height="100" onmouseover="this.width=150;this.height=150;"  onmouseout="this.width=100;this.height=100;" alt="#"/>	--%>				
 </a>
-</div></div></td>  
+</div></div></td> 
 <td class="center"><%=des%></td> 
 
 </tr> <%}%>
@@ -79,3 +78,4 @@ null
 </div>
     </body>
 </html>
+<%----%>
