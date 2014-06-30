@@ -12,7 +12,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Comentarios</title>
-           <link type="text/css" href="EstiloPruebas.css" rel="stylesheet"> 
+        <link href="sistemaPuntuacion.css" type="text/css" rel="stylesheet">  
+        <link type="text/css" href="EstiloPruebas.css" rel="stylesheet"> 
        <link type="text/css" href="estiloTabla.css" rel="stylesheet">
        <script language="JavaScript" type="text/javascript" src="jquery.js" charset="utf-8"></script> 
               <script type="text/javascript">
@@ -53,6 +54,80 @@ jQuery(document).ready( function() {
     }
     
 </script>
+         <script type="text/javascript">
+             function mostrarvalor1(){
+                 var dato=1;
+                 ajax_data="dato="+dato;
+                 $.ajax({
+                type: 'POST',
+                url: "miservlet",
+                data:ajax_data,
+                success: function (data) {
+                     var dat=data.toString();
+                     document.getElementById("muestro").value=dat;
+                    
+                    
+                    }
+                
+                 });
+             }
+              function mostrarvalor2(){
+                 var dato=2;
+                 ajax_data="dato="+dato;
+                 $.ajax({
+                type: 'POST',
+                url: "miservlet",
+                data:ajax_data,
+                success: function (data) {
+                      var dat=data.toString();
+                     document.getElementById("muestro").value=dat;  
+                    }
+                
+                 });
+             }
+              function mostrarvalor3(){
+                 var dato=3;
+                 ajax_data="dato="+dato;
+                 $.ajax({
+                type: 'POST',
+                url: "miservlet",
+                data:ajax_data,
+                success: function (data) {
+                      var dat=data.toString();
+                     document.getElementById("muestro").value=dat;   
+                    }
+                
+                 });
+             }
+               function mostrarvalor4(){
+                 var dato=4;
+                 ajax_data="dato="+dato;
+                 $.ajax({
+                type: 'POST',
+                url: "miservlet",
+                data:ajax_data,
+                success: function (data) {
+                      var dat=data.toString();
+                     document.getElementById("muestro").value=dat;  
+                    }
+                
+                 });
+             }
+               function mostrarvalor5(){
+                 var dato=5;
+                 ajax_data="dato="+dato;
+                 $.ajax({
+                type: 'POST',
+                url: "miservlet",
+                data:ajax_data,
+                success: function (data) {
+                      var dat=data.toString();
+                     document.getElementById("muestro").value=dat;   
+                    }
+                
+                 });
+             }
+         </script>
     </head>
     <body>
   
@@ -73,7 +148,7 @@ jQuery(document).ready( function() {
             HttpSession se=request.getSession(true);
             String us=(String)se.getAttribute("usuario");
             String juego=request.getParameter("juego");
- 
+   int uno=1,dos=2,tres=3,cuatro=4,cinco=5;
        if(us==null||us==""){%>
   <div id="inSesion">
             <a href="IniciarSesion.jsp"> Crear Cuenta :<img src="http://localhost/Imagenes/Registrarse.png" width="20" height="20"></a><br><br>
@@ -115,10 +190,25 @@ jQuery(document).ready( function() {
                     <input type="text" name="juego" value="<%=juego%>" hidden="">
                     Respuesta a Comentario :<input type="text" class="texto" id="idcom" name="idcom" value="0">
                     <br>Fecha Comentario :<input type="date" name="fecha" required="required">
-                    <br>Texto Comentario :<input type="text" class="texto" id="comentario" name="comentario" required="required">
-                <input type="submit" class="texto" value="Enviar Comentario">
+                  <br>Texto Comentario :<textarea type="text" class="texto" id="comentario" name="comentario" required="required" cols="22" rows="5"></textarea>
+                           Sistema de Puntuacion
+<div class="ec-stars-wrapper">
+        <a href="#" onclick="mostrarvalor1();" title="Votar con 1 estrellas">&#9733;</a>
+        <a href="#" onclick="mostrarvalor2();" title="Votar con 2 estrellas">&#9733;</a>
+        <a href="#" onclick="mostrarvalor3();" title="Votar con 3 estrellas">&#9733;</a>
+        <a href="#" onclick="mostrarvalor4();" title="Votar con 4 estrellas">&#9733;</a>
+        <a href="#" onclick="mostrarvalor5();" title="Votar con 5 estrellas">&#9733;</a>
+        
+ <input type="text" id="muestro" readonly="" style="width: 10px;" name="muestro">
+
+</div>
+
+                    
+                    <input type="submit" class="texto" value="Enviar Comentario">
+               
                 </form>
                     <div><%
+                  
                     String vac="";
                     String respuesta=request.getParameter("respuesta");
                     if(respuesta==null||respuesta.equals(vac)){
@@ -132,6 +222,8 @@ jQuery(document).ready( function() {
                         <%
                     }
                     %></div>
+                    
+
             </div>
             
             
@@ -151,10 +243,12 @@ jQuery(document).ready( function() {
    String texto=Comentario.getTexto();
    String fecha=Comentario.getFecha();
    String cliente=Comentario.getCliente();
+   int puntaje=Comentario.getTotal();
+   
    %>
         
               
-   <li class="expandIcon">Nº comentario :<%=com%>&nbsp;&nbsp;&nbsp;Usuario :<%=cliente%>&nbsp;&nbsp; Comentario : <%=texto%>&nbsp;&nbsp; Fecha :<%=fecha%>  
+   <li class="expandIcon">Nº comentario :<%=com%>&nbsp;&nbsp;&nbsp;Usuario :<%=cliente%>&nbsp;&nbsp; Comentario : <%=texto%>&nbsp;&nbsp; Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.  
    
                  <% ArrayList<comentario> coment=bu.comentarioHijos(com); 
            %>
@@ -169,9 +263,10 @@ jQuery(document).ready( function() {
              int come=Comenta.getId_juego();
               cliente=Comenta.getCliente();
               texto=Comenta.getTexto();
-              fecha=Comenta.getFecha(); 
+              fecha=Comenta.getFecha();
+              puntaje=Comenta.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=come%>&nbsp;&nbsp;&nbsp; Usuario :<%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=come%>&nbsp;&nbsp;&nbsp; Usuario :<%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas. 
     
       
 
@@ -188,9 +283,10 @@ jQuery(document).ready( function() {
              int idcom=Comentar.getId_juego();
               cliente=Comentar.getCliente();
               texto=Comentar.getTexto();
-              fecha=Comentar.getFecha(); 
+              fecha=Comentar.getFecha();
+              puntaje=Comentar.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=idcom%>&nbsp;&nbsp;&nbsp;Usuario : <%=cliente%>&nbsp;&nbsp; Comentario :  <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=idcom%>&nbsp;&nbsp;&nbsp;Usuario : <%=cliente%>&nbsp;&nbsp; Comentario :  <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.
     
     
     <% ArrayList<comentario> comentari=bu.comentarioHijos(idcom); 
@@ -206,9 +302,10 @@ jQuery(document).ready( function() {
              int idcome=Comentari.getId_juego();
               cliente=Comentari.getCliente();
               texto=Comentari.getTexto();
-              fecha=Comentari.getFecha(); 
+              fecha=Comentari.getFecha();
+              puntaje=Comentari.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=idcome%>&nbsp;&nbsp;&nbsp; Usuario :    <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=idcome%>&nbsp;&nbsp;&nbsp; Usuario :    <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.
 
     
     <% ArrayList<comentario> comentarios=bu.comentarioHijos(idcome); 
@@ -225,8 +322,9 @@ jQuery(document).ready( function() {
               cliente=Comentarios.getCliente();
               texto=Comentarios.getTexto();
               fecha=Comentarios.getFecha(); 
+              puntaje=Comentarios.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=idcomen%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=idcomen%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.
 
          
     
@@ -243,9 +341,10 @@ jQuery(document).ready( function() {
              int idcoment=Comentarioso.getId_juego();
               cliente=Comentarioso.getCliente();
               texto=Comentarioso.getTexto();
-              fecha=Comentarioso.getFecha(); 
+              fecha=Comentarioso.getFecha();
+              puntaje=Comentarioso.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=idcoment%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=idcoment%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.
 
          
     
@@ -262,9 +361,10 @@ jQuery(document).ready( function() {
              int idcomenta=Comentariosos.getId_juego();
               cliente=Comentariosos.getCliente();
               texto=Comentariosos.getTexto();
-              fecha=Comentariosos.getFecha(); 
+              fecha=Comentariosos.getFecha();
+              puntaje=Comentariosos.getTotal();
                   %>
-<li class="expandIcon">Nº comentario :<%=idcomenta%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>
+<li class="expandIcon">Nº comentario :<%=idcomenta%>&nbsp;&nbsp;&nbsp;   Usuario :  <%=cliente%>&nbsp;&nbsp;  Comentario : <%=texto%>&nbsp;&nbsp;  Fecha :<%=fecha%>&nbsp;&nbsp;Puntaje :<%=puntaje%>de 5 estrellas.
 
          
     

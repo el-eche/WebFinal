@@ -84,7 +84,7 @@
             <h4> Nick Comprador: <%=us%></h4>
            <h4> Nombre Juego: <%=jue%></h4>
            <h4>   Descripcion Juego: <%=desc%></h4>
-             <h4>  Precio: <%=preci%></h4>
+             <h4>  Precio (U$): <%=preci%></h4>
              <input type="submit" value="Confirmar Compra"  onclick="confirmarCompra()" class="texto">
               <input type="submit" value="Cancelar"  onclick="cancelarCompra()" class="texto">
         </div>

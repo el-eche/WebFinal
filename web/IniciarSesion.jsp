@@ -176,8 +176,9 @@ function cambiarDisplay() {
     </div>
                             
                             
-    <div id="medio">       
-<div id="miinicio" style="position: absolute;left: 20px; ">
+    <div id="medio">   
+        <div id="categoria" style="position: absolute;top: 5px;left: 5px;">
+<div id="miinicio" >
             <form id="iniciar" action="validarInicio" method="post">
             <table name="iniciarSesion" border="10">
                 <h3>Iniciar Sesion </h3>
@@ -196,7 +197,9 @@ function cambiarDisplay() {
             </table>
               </form>
         </div>
-  <div id="registro" style="position: absolute; left: 400px;">
+    </div>
+    <div id="resto" style="position: absolute;top: 5px;">
+  <div id="registro">
             <form name="mostrarimagen" action="registrarNuevo.jsp" method="post" enctype="multipart/form-data">
             <table name="registrarse" border="5">   
                 <tr><h3>Registrarse </h3></tr>
@@ -222,7 +225,9 @@ function cambiarDisplay() {
   <tr><td><input type="submit" class="texto" value="Registrar Nuevo"></td></tr>
             </table></form>
         </div></center> 
+        
         <div id="mio"></div>
+    </div>
         </div> 
     
     

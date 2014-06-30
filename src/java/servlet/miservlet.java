@@ -5,30 +5,22 @@
  */
 
 package servlet;
-import Logica.*;
-import conexion.*;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pico
  */
-@WebServlet(name = "procesarComentario", urlPatterns = {"/procesarComentario"})
-public class procesarComentario extends HttpServlet {
+@WebServlet(name = "miservlet", urlPatterns = {"/miservlet"})
+public class miservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +34,9 @@ public class procesarComentario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+       PrintWriter out = response.getWriter();
+    String dato=request.getParameter("dato");
+       out.println(""+dato+"");
         
     }
 
@@ -72,51 +66,7 @@ public class procesarComentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         processRequest(request, response);
-        buscar bu=new buscar();
-        HttpSession sesion=request.getSession(true);
-        String usuario=(String)sesion.getAttribute("usuario");
-        String num=request.getParameter("idcom");
-        String pun=request.getParameter("muestro");
-        int punt=Integer.parseInt(pun);
-        String comentario=request.getParameter("comentario");
-        String comentar=new String(comentario.getBytes(),"UTF-8");
-        String com=new String(comentario.getBytes(),"UTF-8");
-        String fecha=request.getParameter("fecha");
-        String jue=request.getParameter("juego");
-        int numj=bu.numeroJuego(jue);
-        int res=Integer.parseInt(num);
-        if(bu.comprobarCompradores(numj, usuario)==false){
-       String respuesta="Para comentar debes de comprar el juego.\nGracias";
-        response.sendRedirect("ingresarComentarios.jsp?respuesta="+respuesta);
-        }
-        else{
-        comentario comen=new comentario();
-         guardar gu=new guardar();
-          comen.setCliente(usuario);
-        comen.setId_juego(numj);
-        comen.setFecha(fecha);
-       comen.setRespuesta(res);
-       comen.setTexto(comentar);
-       comen.setTotal(punt);
-       gu.guardarComentario(comen);
-       
-       
-       String asunto="Nuevo comentario sobre"+jue;
-       String interno=comentar+"  Realizado por"+usuario;
-       ResultSet rs;
-       rs=bu.traerCompradores(numj);
-            try {
-                while(rs.next()){
-                   String email=rs.getString("email");
-                    EnviadorMail enviar=new EnviadorMail(email, asunto, interno);
-                }    } catch (SQLException ex) {
-                Logger.getLogger(procesarComentario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-       
-        response.sendRedirect("indexDes.jsp");
-        }
     }
 
     /**
